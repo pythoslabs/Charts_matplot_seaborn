@@ -1,0 +1,36 @@
+''' 
+A function to create a combo chart
+Usage : 
+create_combo_chart(string, dataframe)
+eg: create_combo_chart(mat_num,df_mat)
+Note : Some of the columns are being called in the data frame - make sure these columns are present in the df that you are passing 
+'''
+def create_combo_chart(img_fname,df):
+    ax1 = sns.lineplot(
+        x=df.Date.index, 
+        y='Quantity in Cases', 
+        data=df, 
+        sort=False, 
+        color='blue'
+    )
+    ax1.set_ylabel('Qty')
+    #ax1.set_ylim(0, 25)
+    ax1.legend(['Qty'], loc="upper left")# set up the 2nd axis
+
+    ax2 = ax1.twinx() # plot bar graph on axis #2
+    sns.lineplot(
+        x=df.Date.index,  # Date is a column name 
+        y='Price', 
+        data=df, 
+        color='red', 
+        alpha=0.5, 
+        ax = ax2       # Pre-existing axes for the plot
+    )
+    ax2.grid(b=False) # turn off grid #2
+    ax2.set_ylabel('Unit Price')
+    #ax2.set_ylim(0, 90)
+    ax2.legend(['Price'], loc="upper right")
+
+    plt.title(mat_num); # Add legend 
+    plt_sav = plt.savefig("../graphs/" +  img_fname + '.jpg' , dpi = 100,format = 'jpeg');
+    plt.clf();
