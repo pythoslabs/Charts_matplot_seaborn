@@ -7,7 +7,7 @@ Note : Some of the columns are being called in the data frame - make sure these 
 '''
 def create_combo_chart(img_fname,df):
     ax1 = sns.lineplot(
-        x=df.Date.index, 
+        x=df.Date, #x=df.Date.index, # Here Date is the column name - use either the column values or the index 
         y='Quantity in Cases', 
         data=df, 
         sort=False, 
@@ -19,7 +19,7 @@ def create_combo_chart(img_fname,df):
 
     ax2 = ax1.twinx() # plot bar graph on axis #2
     sns.lineplot(
-        x=df.Date.index,  # Date is a column name 
+        x=df.Date, #x=df.Date.index, # Here Date is the column name - use either the column values or the index 
         y='Price', 
         data=df, 
         color='red', 
