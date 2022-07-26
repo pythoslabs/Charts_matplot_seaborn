@@ -1,0 +1,6 @@
+#creating custom bins for histogram 
+
+custom_bins = [-np.inf,100,150,200,250,500,np.inf]
+df_filtered['bins_']=pd.cut(df_filtered['age'],custom_bins,right=False)
+df_filtered.groupby('bins_').mean()['age']
+df_filtered.groupby('bins_').count()['age']
