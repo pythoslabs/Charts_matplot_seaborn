@@ -4,3 +4,17 @@ custom_bins = [-np.inf,100,150,200,250,500,np.inf]
 df_filtered['bins_']=pd.cut(df_filtered['age'],custom_bins,right=False)
 df_filtered.groupby('bins_').mean()['age']
 df_filtered.groupby('bins_').count()['age']
+
+# ------------------------------
+# Smoother way 
+
+custom_bins = [0.0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1]
+custom_labels = [0,1,2,3,4,5,6,7,8,9]
+
+df_predict['age_probab']=pd.cut(df_predict['prob'],custom_bins,labels=custom_labels,right=False)
+# Note - create one less label than the number of bins 
+# This will 
+
+# Example of bins and labels
+custom_bins = [0,3,7,10]
+custom_labels = ['low','medium','high']
